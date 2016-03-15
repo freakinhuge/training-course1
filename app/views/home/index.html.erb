@@ -1,6 +1,9 @@
 <% provide(:title, "Home") %>
-<div class="row">
-	<% @products.each do |product| %>
+<% @product_count = 1 %>
+<% @products.each do |product| %>
+	<% if @product_count % 3 == 1 %>
+	<div class="row">
+	<% end %>
 		<div class="col-sm-4 col-lg-4 col-md-4">
 			<div class="thumbnail">
 				<img src="/assets/<%= product.image %>" alt="">
@@ -24,5 +27,11 @@
 	            </div>
 			</div>
 		</div>
-    <% end %>
+	<% if @product_count % 3 == 0 %>
+	</div>
+	<% end %>
+	<% @product_count += 1 %>
+<% end %>
+<% !if @product_count % 3 == 0 %>
 </div>
+<% end %>
